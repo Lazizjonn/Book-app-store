@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "292275659155",
+    "project_id": "bookapp-51c78",
+    "storage_bucket": "bookapp-51c78.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:292275659155:android:55a5d4b7c4cb1ed4034866",
+        "android_client_info": {
+          "package_name": "uz.gita.bookapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "292275659155-7pv6d74c00he7arc2r7j27ohhhlok50q.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "uz.gita.bookapp",
+            "certificate_hash": "ac7fbd051c04cd74c9135558f0c59b26a77f9242"
+          }
+        },
+        {
+          "client_id": "292275659155-167a01866os08dc4v1rpjfv0di6qrj39.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCVY3fyR9wH-s5P2kzSpwZg2jJdznZKq8I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "292275659155-167a01866os08dc4v1rpjfv0di6qrj39.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
