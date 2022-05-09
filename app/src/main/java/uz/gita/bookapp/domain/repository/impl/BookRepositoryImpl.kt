@@ -50,6 +50,22 @@ class BookRepositoryImpl @Inject constructor(
         awaitClose {  }
     }.flowOn(Dispatchers.IO)
 
+    override fun getFavouriteBooksList(): Flow<List<BookResponse>> = callbackFlow{
+        booksRef.whereEqualTo("fav", 1).get()
+            .addOnSuccessListener {
+                val books = it.map { document ->
+                    Log.d("TAG", "getBooksList: list get success, " + document.toString())
+                    document.toObject(BookResponse::class.java)
+                }
+                trySendBlocking(books)
+            }
+            .addOnFailureListener{
+                Log.d("TAG", "getBooksList: list get success, " + it.message.toString())
+                // failed
+            }
+        awaitClose {  }
+    }.flowOn(Dispatchers.IO)
+
     private fun addMore1() {
         val temp1 = BookResponse(1,
             "https://hilolnashr.uz/image/cache/catalog/001-Kitoblar/001_hilol_nashr/001_diniy/baxtiyor-oila-lotin-web-500x750.png",

@@ -150,11 +150,6 @@ class MainFragment : Fragment(R.layout.fragment_main) {
     }
 
 
-
-    private fun incrementDownloadCount() {
-        TODO("Not yet implemented")
-    }
-
     private val givePermission = registerForActivityResult(ActivityResultContracts.RequestPermission()){ permissionCallback ->
             if (permissionCallback) {
                 Timber.tag("TAG").d("mainFragment rechecked permission granted")
