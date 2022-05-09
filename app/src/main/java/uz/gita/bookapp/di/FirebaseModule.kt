@@ -6,6 +6,7 @@ import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -25,4 +26,6 @@ class FirebaseModule {
     @[Provides Singleton]
     fun bookStoreReference(database: FirebaseFirestore): CollectionReference = database.collection("books")
 
+    @[Provides Singleton]
+    fun getStorage(): FirebaseStorage = FirebaseStorage.getInstance()
 }

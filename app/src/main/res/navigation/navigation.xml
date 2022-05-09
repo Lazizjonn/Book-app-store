@@ -10,4 +10,9 @@
         android:name="uz.gita.bookapp.presentation.ui.screen.HostFragment"
         android:label="fragment_host"
         tools:layout="@layout/fragment_host" />
+    <fragment
+        android:id="@+id/readFragment"
+        android:name="uz.gita.bookapp.presentation.ui.screen.ReadFragment"
+        android:label="fragment_read"
+        tools:layout="@layout/fragment_read" />
 </navigation>
