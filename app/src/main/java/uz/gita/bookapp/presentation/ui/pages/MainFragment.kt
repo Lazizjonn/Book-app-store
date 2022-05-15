@@ -1,4 +1,4 @@
-package uz.gita.bookapp.presentation.ui.screen
+package uz.gita.bookapp.presentation.ui.pages
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

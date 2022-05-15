@@ -41,6 +41,7 @@ android {
 dependencies {
 
     implementation 'androidx.core:core-ktx:1.7.0'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.appcompat:appcompat:1.4.1'
     implementation 'com.google.android.material:material:1.5.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
@@ -56,18 +57,10 @@ dependencies {
     kapt "com.google.dagger:hilt-compiler:2.39.1"
     implementation 'androidx.hilt:hilt-navigation-fragment:1.0.0'
 
-    /**
-     *  Dagger hilt
-     */
-    implementation "com.google.dagger:hilt-android:2.39.1"
-    kapt "com.google.dagger:hilt-compiler:2.39.1"
-    implementation 'androidx.hilt:hilt-navigation-fragment:1.0.0'
-
 
     /**
      *  Navigation
      */
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.navigation:navigation-fragment-ktx:2.4.2'
     implementation 'androidx.navigation:navigation-ui-ktx:2.4.2'
 
@@ -82,10 +75,58 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth-ktx'
     implementation 'com.google.firebase:firebase-analytics-ktx'
 
+
+    /********************************************
+     * Interceptor
+     */
+    implementation("com.squareup.okhttp3:okhttp:5.0.0-alpha.2")
+    implementation 'com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.2'
+
+    /*********************************
+     * REST API: Adding retrofit to the mainLayer
+     */
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-scalars:2.9.0'
+    implementation "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:0.9.2"
+
+
     /**
      *   viewBinding
      */
     implementation 'com.github.kirich1409:viewbindingpropertydelegate-noreflection:1.5.3'
+
+/**
+ *   Android Runtime Permission Library
+ */
+    implementation 'androidx.work:work-runtime-ktx:2.7.0'
+    implementation 'com.nabinbhandari.android:permissions:3.8'
+
+
+    /*************************************
+     *        CreditCardView
+     */
+    implementation 'com.vinaygaba:creditcardview:1.0.4'
+
+
+    /**
+     *        PinView
+     */
+    implementation 'io.github.chaosleung:pinview:1.4.4'
+
+    /*/////////////////////////////////
+        CorBind
+    *///////////////////////////////////
+    implementation 'ru.ldralighieri.corbind:corbind:1.5.2'
+//    implementation 'ru.ldralighieri.corbind:{module}:1.5.3-SNAPSHOT'
+
+
+    /***********************************
+     * Paging 3
+     * */
+    def paging_version = "3.1.0"
+    implementation "androidx.paging:paging-runtime:$paging_version"
+
 
     /**
      * Better Logging In Android Using Timber
@@ -104,5 +145,12 @@ dependencies {
     kapt 'com.github.bumptech.glide:compiler:4.13.0'
 
 
+    /*
+    Shimmer effect
+    * */
+    implementation 'com.facebook.shimmer:shimmer:0.5.0'
+}
 
+kapt {
+    correctErrorTypes = true
 }

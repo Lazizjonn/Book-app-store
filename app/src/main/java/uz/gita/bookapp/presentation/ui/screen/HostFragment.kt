@@ -5,18 +5,16 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.MenuItem
 import android.view.View
-import android.view.ViewGroup
-import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 import uz.gita.bookapp.R
 import uz.gita.bookapp.databinding.FragmentHostBinding
-import uz.gita.bookapp.presentation.ui.HostViewPagerAdapter
+import uz.gita.bookapp.presentation.ui.adapter.HostViewPagerAdapter
+import uz.gita.bookapp.presentation.ui.pages.FavouriteFragment
+import uz.gita.bookapp.presentation.ui.pages.MainFragment
 
 @AndroidEntryPoint
 class HostFragment : Fragment(R.layout.fragment_host) {
