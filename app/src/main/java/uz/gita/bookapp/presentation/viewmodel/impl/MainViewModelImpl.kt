@@ -1,7 +1,6 @@
 package uz.gita.bookapp.presentation.viewmodel.impl
 
 import android.util.Log
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -12,10 +11,9 @@ import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import uz.gita.bookapp.data.model.common.BookAddRequestData
 import uz.gita.bookapp.data.model.common.BookResponseData
-import uz.gita.bookapp.data.model.common.LoadBookByteData
 import uz.gita.bookapp.data.model.request.BookAddRequest
 import uz.gita.bookapp.presentation.viewmodel.MainViewModel
-import uz.gita.bookapp.usecase.BookUseCase
+import uz.gita.bookapp.domain.usecase.BookUseCase
 import javax.inject.Inject
 
 @HiltViewModel
@@ -52,7 +50,11 @@ class MainViewModelImpl @Inject constructor(private val bookUseCase: BookUseCase
     override fun loadBook(book: BookResponseData) {
         bookUseCase.loadBook(book).onEach {
             Log.d("TAG", "viewModel loadBook: ")
-            loadSuccessLiveData.value = it
+            if (it) {
+                loadSuccessLiveData.value = it
+                addBookLoadCounter(book.toBookAddRequestData())
+            }
+
         }.launchIn(viewModelScope)
     }
 

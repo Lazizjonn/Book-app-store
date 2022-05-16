@@ -88,6 +88,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         viewModel.uploadSuccessLiveData.observe(this, uploadSuccessObserver)
         viewModel.loadSuccessLiveData.observe(this, loadSuccessObserver)
         viewModel.readBookLiveData.observe(this, readBookObserver)
+        viewModel.addBookLoadCounterLiveData.observe(this, addBookLoadCounterObserver)
     }
 
     private val bookListObserver = Observer<List<BookResponseData>> {
@@ -98,16 +99,22 @@ class MainFragment : Fragment(R.layout.fragment_main) {
     }
 
     private val loadSuccessObserver = Observer<Boolean> {
-        when(it){
+        /*when(it){
             true -> Toast.makeText(requireContext(), "Book loaded", Toast.LENGTH_SHORT).show()
             else -> Toast.makeText(requireContext(), "Book load failed", Toast.LENGTH_SHORT).show()
-        }
+        }*/
 
     }
     private val readBookObserver = Observer<BookResponseData> {
         val readBundle = bundleOf("read_book" to it)
         findNavController().navigate(R.id.readFragment, readBundle)
 
+    }
+    private val addBookLoadCounterObserver = Observer<Boolean> {
+        when(it){
+            true -> Toast.makeText(requireContext(), "Book loaded", Toast.LENGTH_SHORT).show()
+            else -> Toast.makeText(requireContext(), "Book load failed", Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun clicks() {
@@ -118,7 +125,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
 
                 Timber.tag("TAG").d("mainFragment WRITE_EXTERNAL_STORAGE permission granted")
                 viewModel.loadBook(book)
-                viewModel.addBookLoadCounter(book.toBookAddRequestData())
+                Toast.makeText(requireContext(), "Downloading on background...", Toast.LENGTH_SHORT).show()
 
             }
             else {

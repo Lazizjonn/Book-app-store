@@ -117,6 +117,11 @@ dependencies {
 //    implementation 'com.github.afreakyelf:Pdf-Viewer:v1.0.7'
 
 
+    /**
+     *   Android Runtime Permission Library
+     */
+    implementation 'com.nabinbhandari.android:permissions:3.8'
+
 
 
 }

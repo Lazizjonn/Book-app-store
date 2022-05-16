@@ -40,10 +40,8 @@ class HostFragment : Fragment(R.layout.fragment_host) {
         navView.setNavigationItemSelectedListener {
             drawerLayout.closeDrawer(GravityCompat.START)
             when (it.itemId) {
-                R.id.menu_home -> {
-                }
-                R.id.favourites -> {
-                }
+                R.id.menu_home -> binding.mainViewPager.currentItem = 0
+                R.id.favourites -> binding.mainViewPager.currentItem = 1
                 R.id.share -> { shareApp() }
                 R.id.rate_us -> { rateApp() }
                 R.id.contact -> { contactUs() }

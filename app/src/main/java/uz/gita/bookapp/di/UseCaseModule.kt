@@ -4,11 +4,10 @@ import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import uz.gita.bookapp.domain.repository.BookRepository
-import uz.gita.bookapp.usecase.BookUseCase
-import uz.gita.bookapp.usecase.FavUseCase
-import uz.gita.bookapp.usecase.impl.BookUseCaseImpl
-import uz.gita.bookapp.usecase.impl.FavUseCaseImpl
+import uz.gita.bookapp.domain.usecase.BookUseCase
+import uz.gita.bookapp.domain.usecase.FavUseCase
+import uz.gita.bookapp.domain.usecase.impl.BookUseCaseImpl
+import uz.gita.bookapp.domain.usecase.impl.FavUseCaseImpl
 import javax.inject.Singleton
 
 @Module

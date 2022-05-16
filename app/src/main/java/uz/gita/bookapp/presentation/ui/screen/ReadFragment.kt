@@ -1,6 +1,7 @@
 package uz.gita.bookapp.presentation.ui.screen
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -12,6 +13,7 @@ import uz.gita.bookapp.R
 import uz.gita.bookapp.data.model.common.BookResponseData
 import uz.gita.bookapp.databinding.FragmentReadBinding
 import uz.gita.bookapp.presentation.viewmodel.impl.ReadViewModelImpl
+import uz.gita.bookapp.utils.isFileExists
 import java.io.File
 
 
@@ -23,6 +25,7 @@ class ReadFragment : Fragment(R.layout.fragment_read) {
         binding.titleReading.text = data.title
 
         val file = File(data.path.trim())
+//        Log.d("TAG", "readFragment, file exists: " + file.isFileExists())
         loadFromFile(file)
 
         binding.backButton.setOnClickListener {

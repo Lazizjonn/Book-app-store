@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.onEach
 import uz.gita.bookapp.data.model.common.BookAddRequestData
 import uz.gita.bookapp.data.model.common.BookResponseData
 import uz.gita.bookapp.presentation.viewmodel.FavViewModel
-import uz.gita.bookapp.usecase.FavUseCase
+import uz.gita.bookapp.domain.usecase.FavUseCase
 import javax.inject.Inject
 
 @HiltViewModel

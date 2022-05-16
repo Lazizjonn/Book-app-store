@@ -1,13 +1,12 @@
-package uz.gita.bookapp.usecase.impl
+package uz.gita.bookapp.domain.usecase.impl
 
 import android.util.Log
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
 import uz.gita.bookapp.data.model.common.BookResponseData
-import uz.gita.bookapp.data.model.common.LoadBookByteData
 import uz.gita.bookapp.data.model.request.BookAddRequest
 import uz.gita.bookapp.domain.repository.BookRepository
-import uz.gita.bookapp.usecase.BookUseCase
+import uz.gita.bookapp.domain.usecase.BookUseCase
 import javax.inject.Inject
 
 

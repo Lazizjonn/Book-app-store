@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -14,6 +15,8 @@ import com.bumptech.glide.Glide
 import uz.gita.bookapp.R
 import uz.gita.bookapp.data.model.common.BookAddRequestData
 import uz.gita.bookapp.data.model.common.BookResponseData
+import uz.gita.bookapp.utils.isFileExists
+import java.io.File
 
 
 class FavListAdapter : ListAdapter<BookResponseData, FavListAdapter.BooksViewHolder>(BookDiff) {
@@ -64,12 +67,18 @@ class FavListAdapter : ListAdapter<BookResponseData, FavListAdapter.BooksViewHol
             Log.d("TAG", "bind: "+ item.toString())
             Glide.with(bookImage)
                 .load(item.image)
+                .placeholder(R.drawable.load_anim)
                 .centerCrop()
                 .into(bookImage)
 
             bookTitle.text = item.title
             bookAuthor.text = item.author
+
+            val file = File(item.path.trim())
+            bookRead.isVisible = file.isFileExists()
+            bookDownload.isVisible = !file.isFileExists()
             bookDownload.text = "Download (${item.loadCount})"
+
             bookFileType.text = item.type
             bookSizeMb.text = item.size
             isFav.isChecked = item.fav
