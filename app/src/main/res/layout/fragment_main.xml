@@ -32,14 +32,16 @@
         android:layout_height="wrap_content"
         android:textSize="22sp"
         android:textStyle="bold"
-        android:layout_marginTop="25dp"
+        android:layout_marginStart="16sp"
+        android:layout_marginTop="15dp"
         android:fontFamily="@font/merriweather_regular"
-        android:text="Books"/>
+        android:text="All books"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/books_recycle"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginStart="5dp"
         android:layout_weight="1"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:orientation="vertical"

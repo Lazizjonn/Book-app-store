@@ -1,4 +1,4 @@
-package uz.gita.bookapp.presentation.ui
+package uz.gita.bookapp.presentation.ui.adapter
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager

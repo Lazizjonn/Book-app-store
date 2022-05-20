@@ -5,18 +5,14 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.MenuItem
 import android.view.View
-import android.view.ViewGroup
-import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 import uz.gita.bookapp.R
 import uz.gita.bookapp.databinding.FragmentHostBinding
-import uz.gita.bookapp.presentation.ui.HostViewPagerAdapter
+import uz.gita.bookapp.presentation.ui.adapter.HostViewPagerAdapter
 
 @AndroidEntryPoint
 class HostFragment : Fragment(R.layout.fragment_host) {
@@ -61,8 +57,7 @@ class HostFragment : Fragment(R.layout.fragment_host) {
 
 
     private fun rateApp() {
-        val packageName =
-            "developer?id=uz.gita.italiandictionary"    // GITA+Dasturchilar+Akademiyasi" // "details?id=uz.gita.wooden15puzzleapp"
+        val packageName = "developer?id=uz.gita.bookapp"    // GITA+Dasturchilar+Akademiyasi" // "details?id=uz.gita.wooden15puzzleapp"
         val uri: Uri = Uri.parse("market://$packageName")
         val goToMarket = Intent(Intent.ACTION_VIEW, uri)
         // To count with Play market backstack, After pressing back button,
@@ -87,7 +82,7 @@ class HostFragment : Fragment(R.layout.fragment_host) {
     private fun shareApp(): Boolean {
         val sharingIntent = Intent(android.content.Intent.ACTION_SEND)
         sharingIntent.type = "text/plain"
-        val packageName = "developer?id=uz.gita.italiandictionary"    // GITA+Dasturchilar+Akademiyasi"  "details?id=uz.gita.wooden15puzzleapp"
+        val packageName = "developer?id=uz.gita.bookapp"    // GITA+Dasturchilar+Akademiyasi"  "details?id=uz.gita.wooden15puzzleapp"
 
         val shareBody = "http://play.google.com/store/apps/$packageName"
         sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Our Apps")
@@ -101,10 +96,10 @@ class HostFragment : Fragment(R.layout.fragment_host) {
     private fun shareText(word: String): Boolean {
         val sharingIntent = Intent(android.content.Intent.ACTION_SEND)
         sharingIntent.type = "text/plain"
-        val packageName = "developer?id=uz.gita.italiandictionary"    // GITA+Dasturchilar+Akademiyasi"  "details?id=uz.gita.wooden15puzzleapp"
+        val packageName = "developer?id=uz.gita.bookapp"    // GITA+Dasturchilar+Akademiyasi"  "details?id=uz.gita.wooden15puzzleapp"
         val url = "http://play.google.com/store/apps/$packageName"
 
-        val shareBody = "Word: \"$word\"  \n \n Italian Dictionary: $url"
+        val shareBody = "Word: \"$word\"  \n \n Book Store: $url"
         sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Our Apps")
         sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody)
 
@@ -114,7 +109,7 @@ class HostFragment : Fragment(R.layout.fragment_host) {
     }
 
     private fun contactUs(): Boolean {
-        val email = "ttymi.kamolov@gmail.com" //  "kamolov2540@gmail.com"
+        val email = "suyunovlaziz1997@gmail.com" //  "ttymi.kamolov@gmail.com" //  "kamolov2540@gmail.com"
         val intent = Intent(Intent.ACTION_SENDTO)
         intent.putExtra(android.content.Intent.EXTRA_EMAIL, arrayOf(email))
 //        intent.type = "message/rfc822" // for multiple app

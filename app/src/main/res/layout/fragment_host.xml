@@ -41,7 +41,7 @@
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:fontFamily="@font/merriweather_regular"
-                    android:text="Book App"
+                    android:text="Book Store"
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     android:textStyle="bold" />

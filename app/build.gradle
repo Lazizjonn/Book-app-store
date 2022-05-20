@@ -57,13 +57,6 @@ dependencies {
     kapt "com.google.dagger:hilt-compiler:2.39.1"
     implementation 'androidx.hilt:hilt-navigation-fragment:1.0.0'
 
-    /**
-     *  Dagger hilt
-     */
-    implementation "com.google.dagger:hilt-android:2.39.1"
-    kapt "com.google.dagger:hilt-compiler:2.39.1"
-    implementation 'androidx.hilt:hilt-navigation-fragment:1.0.0'
-
 
     /**
      *  Navigation
@@ -94,20 +87,10 @@ dependencies {
     implementation 'com.jakewharton.timber:timber:5.0.1'
 
     /**
-     * Gson
-     */
-    implementation 'com.google.code.gson:gson:2.8.9'
-
-    /**
      *  Glide
      */
     implementation 'com.github.bumptech.glide:glide:4.13.0'
     kapt 'com.github.bumptech.glide:compiler:4.13.0'
-
-    /**
-     *   Android Runtime Permission Library
-     */
-//    implementation 'com.nabinbhandari.android:permissions:3.8'
 
     /**
      *   PDF viewer
@@ -115,13 +98,5 @@ dependencies {
     implementation 'com.github.barteksc:android-pdf-viewer:2.8.2'
 //    implementation 'com.github.barteksc:android-pdf-viewer:3.1.0-beta.1'
 //    implementation 'com.github.afreakyelf:Pdf-Viewer:v1.0.7'
-
-
-    /**
-     *   Android Runtime Permission Library
-     */
-    implementation 'com.nabinbhandari.android:permissions:3.8'
-
-
 
 }
