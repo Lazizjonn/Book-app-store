@@ -12,14 +12,9 @@ import javax.inject.Inject
 
 class FavUseCaseImpl @Inject constructor(private val repository: BookRepository): FavUseCase {
 
-    override fun getFavouriteBooksList(): Flow<List<BookResponseData>> = flow {
-        repository.getFavouriteBooksList().collect {
-            Log.d("TAG", " usecase getBooksList: list get success, " + it[0].toString())
-            val temp = it.map { it.toBookData() }
-            Log.d("TAG", " usecase getBooksList: list get success, " + temp[0].toString())
-            emit(temp)
-        }
-    }.flowOn(Dispatchers.IO)
+    override fun getFavouriteBooksList(): Flow<List<BookResponseData>> =  repository.getFavouriteBooksList()
+
+
 
     override fun loadBook(book: BookResponseData): Flow<Boolean> = flow {
          repository.loadBook(book.toBookResponse()).collect {

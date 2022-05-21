@@ -1,17 +1,9 @@
 package uz.gita.bookapp.presentation.ui.screen
 
-import android.R.attr.data
 import android.content.pm.PackageManager
-import android.database.Cursor
-import android.net.Uri
 import android.os.Bundle
-import android.os.Environment
-import android.provider.MediaStore
-import android.util.Log
 import android.view.View
 import android.widget.Toast
-import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.result.contract.ActivityResultContract
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
@@ -25,19 +17,16 @@ import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 import uz.gita.bookapp.R
 import uz.gita.bookapp.data.model.common.BookResponseData
-import uz.gita.bookapp.data.model.common.LoadBookByteData
-import uz.gita.bookapp.data.model.request.BookAddRequest
 import uz.gita.bookapp.databinding.FragmentMainBinding
-import uz.gita.bookapp.presentation.ui.adapter.BookListAdapter
 import uz.gita.bookapp.presentation.viewmodel.impl.MainViewModelImpl
-import java.io.FileOutputStream
-import java.util.jar.Manifest
+import uz.gita.bookapp.presentation.ui.adapter.BookListAdapter
+import uz.gita.bookapp.presentation.viewmodel.MainViewModel
 
 
 @AndroidEntryPoint
 class MainFragment : Fragment(R.layout.fragment_main) {
     private val binding by viewBinding(FragmentMainBinding::bind)
-    private val viewModel by viewModels<MainViewModelImpl>()
+    private val viewModel: MainViewModel by viewModels<MainViewModelImpl>()
     private lateinit var booksAdapter: BookListAdapter
 
 

@@ -12,12 +12,12 @@ import kotlinx.coroutines.launch
 import uz.gita.bookapp.data.model.common.BookAddRequestData
 import uz.gita.bookapp.data.model.common.BookResponseData
 import uz.gita.bookapp.data.model.request.BookAddRequest
+import uz.gita.bookapp.domain.usecase.BookUseCase
 import uz.gita.bookapp.presentation.viewmodel.MainViewModel
 import javax.inject.Inject
-import uz.gita.bookapp.domain.usecase.BookUseCase
 
 @HiltViewModel
-class MainViewModelImpl @Inject constructor(private val bookUseCase: BookUseCase): ViewModel(), MainViewModel {
+class MainViewModelImpl @Inject constructor(private val bookUseCase: BookUseCase) : ViewModel(), MainViewModel {
     override val bookListLiveResponseData = MutableLiveData<List<BookResponseData>>()
     override val uploadSuccessLiveData = MutableLiveData<Boolean>()
     override val loadSuccessLiveData = MutableLiveData<Boolean>()
@@ -30,10 +30,10 @@ class MainViewModelImpl @Inject constructor(private val bookUseCase: BookUseCase
     }
 
     override fun getBooksList() {
-            bookUseCase.getBooksList().onEach {
-                bookListLiveResponseData.value = it
-            }.launchIn(viewModelScope)
-        }
+        bookUseCase.getBooksList().onEach {
+            bookListLiveResponseData.value = it
+        }.launchIn(viewModelScope)
+    }
 
     override fun uploadBook(book: BookAddRequest) {
         /*bookUseCase.uploadBook(book).onEach { response->
@@ -41,7 +41,7 @@ class MainViewModelImpl @Inject constructor(private val bookUseCase: BookUseCase
         }.launchIn(viewModelScope)*/
 
         viewModelScope.launch {
-            bookUseCase.uploadBook(book).collect { response->
+            bookUseCase.uploadBook(book).collect { response ->
                 uploadSuccessLiveData.postValue(response)
             }
         }
