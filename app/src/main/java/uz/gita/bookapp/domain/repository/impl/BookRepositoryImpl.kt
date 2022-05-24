@@ -60,7 +60,8 @@ class BookRepositoryImpl @Inject constructor(
                     Log.d("TAG", "getBooksList: list get success, " + document.toString())
                     document.toObject(BookResponse::class.java)
                 }
-                trySendBlocking(books)
+                trySendBlocking(books.map { it.toBookData() })
+
             }
             .addOnFailureListener{
                 Log.d("TAG", "getBooksList: list get success, " + it.message.toString())
@@ -88,7 +89,6 @@ class BookRepositoryImpl @Inject constructor(
                 Log.d("TAG", "getBooksList: temp set failure; " + it.message.toString())
             }
     }
-
     private fun addMore2() {
         val temp2 = BookResponse(2,
             "https://fb2bookfree.com/uploads/posts/2021-11/thumbs/1637987715_415jhuymlrl._sx350_bo1204203200_.jpg",
@@ -105,7 +105,6 @@ class BookRepositoryImpl @Inject constructor(
                 Log.d("TAG", "getBooksList: temp set failure; " + it.message.toString())
             }
     }
-
     private fun addMore3() {
 
         val temp3 = BookResponse(3,
@@ -123,7 +122,6 @@ class BookRepositoryImpl @Inject constructor(
                 Log.d("TAG", "getBooksList: temp set failure; " + it.message.toString())
             }
     }
-
     private fun addMore4() {
 
         val temp4 = BookResponse(4,

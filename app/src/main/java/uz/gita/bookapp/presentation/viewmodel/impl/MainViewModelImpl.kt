@@ -12,6 +12,7 @@ import kotlinx.coroutines.launch
 import uz.gita.bookapp.data.model.common.BookAddRequestData
 import uz.gita.bookapp.data.model.common.BookResponseData
 import uz.gita.bookapp.data.model.request.BookAddRequest
+import uz.gita.bookapp.domain.usecase.BookUseCase
 import uz.gita.bookapp.presentation.viewmodel.MainViewModel
 import javax.inject.Inject
 import uz.gita.bookapp.domain.usecase.BookUseCase
@@ -19,7 +20,7 @@ import uz.gita.bookapp.utils.loadCompleteLiveData
 import uz.gita.bookapp.utils.loadStartedLiveData
 
 @HiltViewModel
-class MainViewModelImpl @Inject constructor(private val bookUseCase: BookUseCase): ViewModel(), MainViewModel {
+class MainViewModelImpl @Inject constructor(private val bookUseCase: BookUseCase) : ViewModel(), MainViewModel {
     override val bookListLiveResponseData = MutableLiveData<List<BookResponseData>>()
     override val favBookListLiveResponseData = MutableLiveData<List<BookResponseData>>()
     override val uploadSuccessLiveData = MutableLiveData<Boolean>()
@@ -52,7 +53,7 @@ class MainViewModelImpl @Inject constructor(private val bookUseCase: BookUseCase
         }.launchIn(viewModelScope)*/
 
         viewModelScope.launch {
-            bookUseCase.uploadBook(book).collect { response->
+            bookUseCase.uploadBook(book).collect { response ->
                 uploadSuccessLiveData.postValue(response)
             }
         }

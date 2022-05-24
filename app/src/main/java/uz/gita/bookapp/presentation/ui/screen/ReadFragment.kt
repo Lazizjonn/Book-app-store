@@ -1,5 +1,6 @@
 package uz.gita.bookapp.presentation.ui.screen
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -20,6 +21,7 @@ import java.io.File
 class ReadFragment : Fragment(R.layout.fragment_read) {
     private val binding by viewBinding(FragmentReadBinding::bind)
     private val viewModel by viewModels<ReadViewModelImpl>()
+    @SuppressLint("FragmentLiveDataObserve")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val data = arguments?.getSerializable("read_book") as BookResponseData
         binding.titleReading.text = data.title
@@ -32,7 +34,7 @@ class ReadFragment : Fragment(R.layout.fragment_read) {
             viewModel.goBack()
         }
 
-        viewModel.goBackLiveData.observe(this, goBackObserver)
+        viewModel.goBackLiveData.observe(this@ReadFragment, goBackObserver)
     }
 
     private val goBackObserver = Observer<Unit>{
