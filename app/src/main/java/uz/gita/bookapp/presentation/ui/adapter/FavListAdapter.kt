@@ -77,7 +77,7 @@ class FavListAdapter : ListAdapter<BookResponseData, FavListAdapter.BooksViewHol
             val file = File(item.path.trim())
             bookRead.isVisible = file.isFileExists()
             bookDownload.isVisible = !file.isFileExists()
-            bookDownload.text = "Download (${item.loadCount})"
+            bookDownload.text = "Download"
 
             bookFileType.text = item.type
             bookSizeMb.text = item.size
@@ -105,5 +105,10 @@ class FavListAdapter : ListAdapter<BookResponseData, FavListAdapter.BooksViewHol
 
     fun isFavListener(block: (BookAddRequestData) -> Unit) {
         this.isFavListener = block
+    }
+
+    override fun submitList(list: List<BookResponseData>?) {
+        super.submitList(list)
+        notifyDataSetChanged()
     }
 }

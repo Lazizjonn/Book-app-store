@@ -11,37 +11,38 @@ import com.google.firebase.storage.FirebaseStorage
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.channels.trySendBlocking
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.callbackFlow
-import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.flow.flowOn
 import uz.gita.bookapp.data.model.common.BookResponseData
 import uz.gita.bookapp.data.model.common.LoadBookByteData
 import uz.gita.bookapp.data.model.request.BookAddRequest
 import uz.gita.bookapp.data.model.response.BookResponse
+import uz.gita.bookapp.data.source.room.dao.BookDao
 import uz.gita.bookapp.domain.repository.BookRepository
 import java.io.File
 import java.io.FileOutputStream
 import javax.inject.Inject
 
 class BookRepositoryImpl @Inject constructor(
+    val dao: BookDao,
     private val storage: FirebaseStorage,
     private val booksRef: CollectionReference): BookRepository {
 
-    override fun getBooksList(): Flow<List<BookResponse>> = callbackFlow<List<BookResponse>> {
+    override fun getBooksList(): Flow<List<BookResponse>> = callbackFlow {
 
 //        addMore1()
 //        addMore2()
 //        addMore3()
 //        addMore4()
 
-        booksRef.get()
-            .addOnSuccessListener {
+        booksRef.get().addOnSuccessListener {
                 val books = it.map { document ->
-                    Log.d("TAG", "getBooksList: list get success, " + document.toString())
                     document.toObject(BookResponse::class.java)
                 }
-                trySendBlocking(books)
+            Log.d("TAG", "getBooksList: list get success, " + books.size)
+//            dao.deleteBooks()
+            dao.insertBooks(books.map { it.toBookEntity() })
+            trySendBlocking(dao.getAllBooks().map { it.toBookResponse() })
         }
             .addOnFailureListener{
                 Log.d("TAG", "getBooksList: list get success, " + it.message.toString())
@@ -50,7 +51,9 @@ class BookRepositoryImpl @Inject constructor(
         awaitClose {  }
     }.flowOn(Dispatchers.IO)
 
-    override fun getFavouriteBooksList(): Flow<List<BookResponse>> = callbackFlow{
+    override fun getBooksListDB(): Flow<List<BookResponse>> = flow { emit(dao.getAllBooks().map { it.toBookResponse() }) }.flowOn(Dispatchers.IO)
+
+    /*override fun getFavouriteBooksList(): Flow<List<BookResponse>> = callbackFlow{
         booksRef.whereEqualTo("fav", 1).get()
             .addOnSuccessListener {
                 val books = it.map { document ->
@@ -64,7 +67,9 @@ class BookRepositoryImpl @Inject constructor(
                 // failed
             }
         awaitClose {  }
-    }.flowOn(Dispatchers.IO)
+    }.flowOn(Dispatchers.IO)*/
+
+    override fun getFavouriteBooksListDB(): Flow<List<BookResponse>> = flow{ emit(dao.getAllFavBooks().map { it.toBookResponse() }) }.flowOn(Dispatchers.IO)
 
     private fun addMore1() {
         val temp1 = BookResponse(1,
@@ -139,21 +144,20 @@ class BookRepositoryImpl @Inject constructor(
 
 
     override fun uploadBook(book: BookAddRequest) = callbackFlow<Boolean> {
-        val storageRef = storage.getReference("book_storage")
-        val bookRef = storageRef.child(book.id.toString())
+            val storageRef = storage.getReference("book_storage")
+            val bookRef = storageRef.child(book.id.toString())
 
-        val file = Uri.fromFile(File(book.path))
+            val file = Uri.fromFile(File(book.path))
 
-        bookRef.putFile(file)
-            .addOnSuccessListener { task ->
-                Log.d("TAG", "uploadBook: success, " + task.metadata?.sizeBytes.toString())
-                trySendBlocking(true)
-            }
-            .addOnFailureListener {
-                Log.d("TAG", "uploadBook: failure, " + it.message.toString())
-                trySendBlocking(false)
-            }
-
+            bookRef.putFile(file)
+                .addOnSuccessListener { task ->
+                    Log.d("TAG", "uploadBook: success, " + task.metadata?.sizeBytes.toString())
+                    trySendBlocking(true)
+                }
+                .addOnFailureListener {
+                    Log.d("TAG", "uploadBook: failure, " + it.message.toString())
+                    trySendBlocking(false)
+                }
         awaitClose {  }
     }.catch {
         Log.d("TAG", "uploadBook: failure, " + it.message.toString())
@@ -182,20 +186,20 @@ class BookRepositoryImpl @Inject constructor(
 
 
     override fun loadBook(book: BookResponse): Flow<Boolean>  = callbackFlow {
-        val gsReference = storage.getReferenceFromUrl(book.url)
+            val gsReference = storage.getReferenceFromUrl(book.url)
 
-        val ONE_MEGABYTE: Long = 20 * 1024 * 1024 // 20 mb limit
-        gsReference.getBytes(ONE_MEGABYTE)
-            .addOnSuccessListener { bytes ->
-                Log.d("TAG", "loadBook: success, fileSize " + bytes.size.toString())
+            val ONE_MEGABYTE: Long = 20 * 1024 * 1024 // 20 mb limit
+            gsReference.getBytes(ONE_MEGABYTE)
+                .addOnSuccessListener { bytes ->
+                    Log.d("TAG", "loadBook: success, fileSize " + bytes.size.toString())
 //                trySendBlocking(LoadBookByteData(book.toBookData(), bytes))
-                val isSaved = saveBookToFolder(book.path.trim(), bytes)
-                trySendBlocking(isSaved)
-            }
-            .addOnFailureListener{
-                Log.d("TAG", "loadBook: failure, " + it.message.toString())
+                    val isSaved = saveBookToFolder(book.path.trim(), bytes)
+                    trySendBlocking(isSaved)
+                }
+                .addOnFailureListener {
+                    Log.d("TAG", "loadBook: failure, " + it.message.toString())
 //                trySendBlocking()
-            }
+                }
         awaitClose {  }
     }.flowOn(Dispatchers.IO)
 
@@ -220,8 +224,7 @@ class BookRepositoryImpl @Inject constructor(
     }
 
 
-
-    override fun isBookFavourite(book: BookAddRequest): Flow<Boolean> = callbackFlow<Boolean> {
+/*    override fun isBookFavourite(book: BookAddRequest): Flow<Boolean> = callbackFlow<Boolean> {
         book.fav = when (book.fav){
             0 -> 1
             1 -> 0
@@ -237,7 +240,21 @@ class BookRepositoryImpl @Inject constructor(
                 trySendBlocking(false)
             }
         awaitClose {  }
-    }.flowOn(Dispatchers.IO)
+    }.flowOn(Dispatchers.IO)*/
+
+    override fun isBookFavouriteDB(book: BookAddRequest): Flow<Boolean> = flow<Boolean> {
+        book.fav = when (book.fav){
+            0 -> 1
+            1 -> 0
+            else -> {0}
+        }
+        dao.updateBook(book.toBookEntity())
+        Log.d("TAG", "book isFav changed to:" + book.fav)
+        emit(true)
+
+    }.catch {
+        //
+    }  .flowOn(Dispatchers.IO)
 
     override fun addBookLoadCounter(book: BookAddRequest): Flow<Boolean> = callbackFlow<Boolean> {
         book.loadCount = book.loadCount + 1
@@ -252,7 +269,5 @@ class BookRepositoryImpl @Inject constructor(
             }
         awaitClose {  }
     }.flowOn(Dispatchers.IO)
-
-
 
 }

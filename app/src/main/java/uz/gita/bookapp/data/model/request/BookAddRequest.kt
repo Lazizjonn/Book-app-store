@@ -1,6 +1,7 @@
 package uz.gita.bookapp.data.model.request
 
 import uz.gita.bookapp.data.model.common.BookAddRequestData
+import uz.gita.bookapp.data.source.room.entity.BookEntity
 import java.io.Serializable
 
 class BookAddRequest(
@@ -26,5 +27,12 @@ class BookAddRequest(
             else->{ true }
         }
         return BookAddRequestData(id, image, title, description, category, author, type, size, pages, _fav, loadCount, fileName, url, path)
+    }
+    fun toBookEntity(): BookEntity {
+        val _fav: Boolean = when (this.fav){
+            0 ->{ false }
+            else->{ true }
+        }
+        return BookEntity(id, image, title, description, category, author, type, size, pages, _fav, false, loadCount, fileName, url, path)
     }
 }

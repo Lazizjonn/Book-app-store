@@ -99,4 +99,21 @@ dependencies {
 //    implementation 'com.github.barteksc:android-pdf-viewer:3.1.0-beta.1'
 //    implementation 'com.github.afreakyelf:Pdf-Viewer:v1.0.7'
 
+
+/**
+ *   Android Runtime Permission Library
+ */
+    implementation 'androidx.work:work-runtime-ktx:2.7.1'
+    implementation 'com.nabinbhandari.android:permissions:3.8'
+
+    /**
+     *  ROOM
+     */
+    def roomVersion = "2.4.2"
+    implementation "androidx.room:room-runtime:2.4.2"
+    implementation "androidx.room:room-ktx:$roomVersion"
+    // To use Kotlin annotation processing tool (kapt)
+    kapt("androidx.room:room-compiler:$roomVersion")
+
+
 }

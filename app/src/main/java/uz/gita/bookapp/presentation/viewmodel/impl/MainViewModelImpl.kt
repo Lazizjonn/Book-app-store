@@ -15,10 +15,13 @@ import uz.gita.bookapp.data.model.request.BookAddRequest
 import uz.gita.bookapp.presentation.viewmodel.MainViewModel
 import javax.inject.Inject
 import uz.gita.bookapp.domain.usecase.BookUseCase
+import uz.gita.bookapp.utils.loadCompleteLiveData
+import uz.gita.bookapp.utils.loadStartedLiveData
 
 @HiltViewModel
 class MainViewModelImpl @Inject constructor(private val bookUseCase: BookUseCase): ViewModel(), MainViewModel {
     override val bookListLiveResponseData = MutableLiveData<List<BookResponseData>>()
+    override val favBookListLiveResponseData = MutableLiveData<List<BookResponseData>>()
     override val uploadSuccessLiveData = MutableLiveData<Boolean>()
     override val loadSuccessLiveData = MutableLiveData<Boolean>()
     override val readBookLiveData = MutableLiveData<BookResponseData>()
@@ -31,9 +34,17 @@ class MainViewModelImpl @Inject constructor(private val bookUseCase: BookUseCase
 
     override fun getBooksList() {
             bookUseCase.getBooksList().onEach {
+                Log.d("TAG", "MainViewModelImpl getBookList: ${it.size}")
                 bookListLiveResponseData.value = it
             }.launchIn(viewModelScope)
         }
+
+    override fun getBooksListDB() {
+        bookUseCase.getBooksListDB().onEach {
+            Log.d("TAG", "MainViewModelImpl getBookList: ${it.size}")
+            bookListLiveResponseData.value = it
+        }.launchIn(viewModelScope)
+    }
 
     override fun uploadBook(book: BookAddRequest) {
         /*bookUseCase.uploadBook(book).onEach { response->
@@ -47,12 +58,16 @@ class MainViewModelImpl @Inject constructor(private val bookUseCase: BookUseCase
         }
     }
 
+
+
     override fun loadBook(book: BookResponseData) {
+        loadStartedLiveData.value = book.toBookAddRequestData()
         bookUseCase.loadBook(book).onEach {
             Log.d("TAG", "viewModel loadBook: ")
             if (it) {
                 loadSuccessLiveData.value = it
-                addBookLoadCounter(book.toBookAddRequestData())
+                loadCompleteLiveData.value = book.toBookAddRequestData()
+//                addBookLoadCounter(book.toBookAddRequestData())
             }
 
         }.launchIn(viewModelScope)
@@ -66,14 +81,16 @@ class MainViewModelImpl @Inject constructor(private val bookUseCase: BookUseCase
     override fun isBookFavourite(book: BookAddRequestData) {
         bookUseCase.isBookFavourite(book.toBookAddRequest()).onEach {
             isBookFavouriteLiveData.value = it
-            getBooksList()
+            getBooksListDB()   // pirpirab qolyabdi
         }.launchIn(viewModelScope)
     }
 
     override fun addBookLoadCounter(book: BookAddRequestData) {
         bookUseCase.addBookLoadCounter(book.toBookAddRequest()).onEach {
-            addBookLoadCounterLiveData.value = it
-            getBooksList()
+            if(it) {
+                addBookLoadCounterLiveData.value = it
+                getBooksListDB()
+            }
         }.launchIn(viewModelScope)
     }
 }

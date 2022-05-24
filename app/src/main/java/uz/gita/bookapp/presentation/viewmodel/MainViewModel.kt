@@ -10,6 +10,7 @@ import uz.gita.bookapp.data.model.request.BookAddRequest
 
 interface MainViewModel {
     val bookListLiveResponseData: LiveData<List<BookResponseData>>
+    val favBookListLiveResponseData: LiveData<List<BookResponseData>>
     val uploadSuccessLiveData: LiveData<Boolean>
     val loadSuccessLiveData: LiveData<Boolean>
     val readBookLiveData: LiveData<BookResponseData>
@@ -18,6 +19,8 @@ interface MainViewModel {
     val addBookLoadCounterLiveData: LiveData<Boolean>
 
     fun getBooksList()
+
+    fun getBooksListDB()
 
     fun uploadBook(book: BookAddRequest)
 

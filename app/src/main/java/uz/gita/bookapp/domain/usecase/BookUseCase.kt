@@ -11,6 +11,10 @@ interface BookUseCase {
 
     fun getBooksList(): Flow<List<BookResponseData>>
 
+    fun getBooksListDB(): Flow<List<BookResponseData>>
+
+    fun getFavouriteBooksListDB(): Flow<List<BookResponseData>>
+
     fun uploadBook(book: BookAddRequest): Flow<Boolean>
 
     fun loadBook(book: BookResponseData): Flow<Boolean>

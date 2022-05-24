@@ -16,7 +16,7 @@ interface FavViewModel {
     val isBookFavouriteLiveData: LiveData<Boolean>
     val addBookLoadCounterLiveData: LiveData<Boolean>
 
-    fun getFavouriteBooksList()
+    fun getFavouriteBooksListDB()
 
     fun loadBook(book: BookResponseData)
 

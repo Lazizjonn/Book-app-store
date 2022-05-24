@@ -1,6 +1,7 @@
 package uz.gita.bookapp.data.model.response
 
 import uz.gita.bookapp.data.model.common.BookResponseData
+import uz.gita.bookapp.data.source.room.entity.BookEntity
 import java.io.Serializable
 
 data class BookResponse(
@@ -26,5 +27,13 @@ data class BookResponse(
             else->{ true }
         }
         return BookResponseData(id, image, title, description, category, author, type, size, pages, _fav, loadCount, fileName, url, path)
+    }
+
+    fun toBookEntity(): BookEntity {
+        val _fav: Boolean = when (this.fav){
+            0 ->{ false }
+            else->{ true }
+        }
+        return BookEntity(id, image, title, description, category, author, type, size, pages, _fav, false, loadCount, fileName, url, path)
     }
 }

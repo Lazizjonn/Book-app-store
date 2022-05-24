@@ -9,7 +9,9 @@ import uz.gita.bookapp.data.model.response.BookResponse
 
 interface FavUseCase {
 
-    fun getFavouriteBooksList(): Flow<List<BookResponseData>>
+//    fun getFavouriteBooksList(): Flow<List<BookResponseData>>
+
+    fun getFavouriteBooksListDB(): Flow<List<BookResponseData>>
 
     fun loadBook(book: BookResponseData): Flow<Boolean>
 
