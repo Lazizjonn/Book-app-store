@@ -44,7 +44,7 @@
             android:layout_marginStart="6dp"
             android:text="Title \nhhbv \najzdsvdvvdsb \nhdvbd \ndvdv "
             android:fontFamily="@font/merriweather_regular"
-            android:textSize="17sp"
+            android:textSize="16sp"
             android:textStyle="bold"
             />
 
@@ -134,7 +134,7 @@
                     android:focusable="true"
                     android:textAlignment="center"
                     android:textColor="@color/white"
-                    android:textSize="16sp"
+                    android:textSize="15sp"
                     android:fontFamily="@font/merriweather_regular"
                     android:background="@drawable/background_read_button"
                     android:layout_margin="4dp"
@@ -151,7 +151,7 @@
                     android:focusable="true"
                     android:textAlignment="center"
                     android:textColor="@color/white"
-                    android:textSize="16sp"
+                    android:textSize="15sp"
                     android:fontFamily="@font/merriweather_regular"
                     android:background="@drawable/background_button"
                     android:layout_margin="4dp"

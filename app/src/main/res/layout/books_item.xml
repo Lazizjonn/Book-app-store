@@ -1,195 +1,178 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-
-    <androidx.cardview.widget.CardView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:cardElevation="5dp"
-        app:cardBackgroundColor="#00454545"
-        android:layout_margin="8dp"
-        app:cardCornerRadius="25dp">
-
-        <ImageView
-            android:id="@+id/book_image"
-            android:layout_width="140dp"
-            android:layout_height="210dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/book_image"
-            />
-
-    </androidx.cardview.widget.CardView>
+    android:orientation="horizontal">
 
 
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:orientation="vertical"
-        >
-
-        <TextView
-            android:id="@+id/book_title"
-            android:layout_width="match_parent"
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:fitsSystemWindows="true"
-            android:layout_marginEnd="6dp"
-            android:maxLines="4"
-            android:layout_weight="1"
+            android:layout_margin="8dp"
+            app:cardBackgroundColor="#00454545"
+            app:cardCornerRadius="25dp"
+            app:cardElevation="5dp">
 
-            android:layout_marginStart="6dp"
-            android:text="Title \nhhbv \najzdsvdvvdsb \nhdvbd \ndvdv "
-            android:fontFamily="@font/merriweather_regular"
-            android:textSize="17sp"
-            android:textStyle="bold"
-            />
+            <ImageView
+                android:id="@+id/book_image"
+                android:layout_width="140dp"
+                android:layout_height="210dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/book_image" />
+
+        </androidx.cardview.widget.CardView>
+
 
         <androidx.appcompat.widget.LinearLayoutCompat
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            >
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
 
             <TextView
-                android:id="@+id/book_author"
-                android:layout_width="0dp"
-                android:layout_weight="1"
+                android:id="@+id/book_title"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginEnd="6dp"
-                android:maxLines="1"
                 android:layout_marginStart="6dp"
-                android:text="Muhammad Yusuf"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="6dp"
+                android:layout_weight="1"
+                android:fitsSystemWindows="true"
+
                 android:fontFamily="@font/merriweather_regular"
-                android:textSize="12sp"
-                />
+                android:maxLines="4"
+                android:text="Title \nhhbv \najzdsvdvvdsb \nhdvbd \ndvdv "
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
             <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="horizontal"
+                >
 
                 <TextView
-                    android:id="@+id/book_file_type"
-                    android:layout_width="match_parent"
+                    android:id="@+id/book_author"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:layout_marginEnd="6dp"
                     android:maxLines="1"
                     android:layout_marginStart="6dp"
-                    android:text="pdf, djvu"
-                    android:padding="2dp"
-                    android:textAlignment="textEnd"
+                    android:text="Muhammad Yusuf"
                     android:fontFamily="@font/merriweather_regular"
                     android:textSize="12sp"
                     />
 
-
-
-                <TextView
-                    android:id="@+id/book_size_mb"
-                    android:layout_width="match_parent"
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="6dp"
-                    android:maxLines="1"
-                    android:layout_marginStart="6dp"
-                    android:text="2.6 mb"
-                    android:padding="2dp"
-                    android:textAlignment="textEnd"
-                    android:fontFamily="@font/merriweather_regular"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    />
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/book_file_type"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="6dp"
+                        android:maxLines="1"
+                        android:layout_marginStart="6dp"
+                        android:text="pdf, djvu"
+                        android:padding="2dp"
+                        android:textAlignment="textEnd"
+                        android:fontFamily="@font/merriweather_regular"
+                        android:textSize="12sp"
+                        />
+
+
+
+                    <TextView
+                        android:id="@+id/book_size_mb"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="6dp"
+                        android:maxLines="1"
+                        android:layout_marginStart="6dp"
+                        android:text="2.6 mb"
+                        android:padding="2dp"
+                        android:textAlignment="textEnd"
+                        android:fontFamily="@font/merriweather_regular"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        />
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
-        </androidx.appcompat.widget.LinearLayoutCompat>
 
-
-
-
-
-
-        <androidx.appcompat.widget.LinearLayoutCompat
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            >
 
             <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-                <TextView
-                    android:id="@+id/book_read"
-                    android:layout_width="match_parent"
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Read"
-                    android:padding="5dp"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:textAlignment="center"
-                    android:textColor="@color/white"
-                    android:textSize="16sp"
-                    android:fontFamily="@font/merriweather_regular"
-                    android:background="@drawable/background_read_button"
-                    android:layout_margin="4dp"
-                    android:textAllCaps="false"
-                    />
+                    android:layout_weight="1"
+                    android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/book_download"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Download"
-                    android:padding="5dp"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:textAlignment="center"
-                    android:textColor="@color/white"
-                    android:textSize="16sp"
-                    android:fontFamily="@font/merriweather_regular"
-                    android:background="@drawable/background_button"
-                    android:layout_margin="4dp"
-                    android:foreground="?selectableItemBackground"
-                    android:textAllCaps="false"
-                    />
+                    <TextView
+                        android:id="@+id/book_read"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="4dp"
+                        android:background="@drawable/background_read_button"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:fontFamily="@font/merriweather_regular"
+                        android:padding="5dp"
+                        android:text="Read"
+                        android:textAlignment="center"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="15sp" />
 
-            </androidx.appcompat.widget.LinearLayoutCompat>
+                    <TextView
+                        android:id="@+id/book_download"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="4dp"
+                        android:background="@drawable/background_button"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:fontFamily="@font/merriweather_regular"
+                        android:foreground="?selectableItemBackground"
+                        android:padding="5dp"
+                        android:text="Download"
+                        android:textAlignment="center"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="15sp" />
 
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+                </androidx.appcompat.widget.LinearLayoutCompat>
 
-                <androidx.appcompat.widget.AppCompatCheckBox
-                    android:id="@+id/isFav"
+                <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:button="@drawable/favourite_drawable2"/>
+                    android:orientation="vertical">
+
+                    <ImageButton
+                        android:id="@+id/isFav"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/favourite_drawable2" />
+
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
 
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
 
-
         </androidx.appcompat.widget.LinearLayoutCompat>
-
-
-
-
-
-    </androidx.appcompat.widget.LinearLayoutCompat>
-
-
-
-
-
-
 
 
 </androidx.appcompat.widget.LinearLayoutCompat>

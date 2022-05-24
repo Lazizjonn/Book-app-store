@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.view.isVisible
@@ -42,7 +43,7 @@ class BookListAdapter : ListAdapter<BookResponseData, BookListAdapter.BooksViewH
         val bookAuthor = view.findViewById<TextView>(R.id.book_author)
         val bookFileType = view.findViewById<TextView>(R.id.book_file_type)
         val bookSizeMb = view.findViewById<TextView>(R.id.book_size_mb)
-        var isFav = view.findViewById<CheckBox>(R.id.isFav)
+        var isFav = view.findViewById<ImageButton>(R.id.isFav)
 
         val bookDownload = view.findViewById<TextView>(R.id.book_download)
         val bookRead = view.findViewById<TextView>(R.id.book_read)
@@ -50,6 +51,7 @@ class BookListAdapter : ListAdapter<BookResponseData, BookListAdapter.BooksViewH
         init {
             bookDownload.setOnClickListener {
                 downloadListener?.invoke(currentList[absoluteAdapterPosition])
+
             }
 
             bookRead.setOnClickListener {
@@ -64,6 +66,13 @@ class BookListAdapter : ListAdapter<BookResponseData, BookListAdapter.BooksViewH
 
         fun bind() {
             val item = getItem(absoluteAdapterPosition)
+
+            val file = File(item.path.trim())
+            Log.d("TAG", "BookListAdapter onBind, fileExist:" + file.isFileExists())
+            bookRead.isVisible = file.isFileExists()
+            bookDownload.isVisible = !file.isFileExists()
+            bookDownload.text = "Download"
+
             Log.d("TAG", "bind: "+ item.toString())
             Glide.with(bookImage)
                 .load(item.image)
@@ -74,14 +83,13 @@ class BookListAdapter : ListAdapter<BookResponseData, BookListAdapter.BooksViewH
             bookTitle.text = item.title
             bookAuthor.text = item.author
 
-            val file = File(item.path.trim())
-            bookRead.isVisible = file.isFileExists()
-            bookDownload.isVisible = !file.isFileExists()
-            bookDownload.text = "Download (${item.loadCount})"
-
             bookFileType.text = item.type
             bookSizeMb.text = item.size
-            isFav.isChecked = item.fav
+//            isFav.isSelected = item.fav
+            when(item.fav){
+                true -> { isFav.setBackgroundResource(R.drawable.bookmark2) }
+                false -> { isFav.setBackgroundResource(R.drawable.bookmark_border2) }
+            }
 
 //            item.pages
 //            item.description
@@ -105,5 +113,10 @@ class BookListAdapter : ListAdapter<BookResponseData, BookListAdapter.BooksViewH
 
     fun isFavListener(block: (BookAddRequestData) -> Unit) {
         this.isFavListener = block
+    }
+
+    override fun submitList(list: List<BookResponseData>?) {
+        super.submitList(list)
+        notifyDataSetChanged()
     }
 }

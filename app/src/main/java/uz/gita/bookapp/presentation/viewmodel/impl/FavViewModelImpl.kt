@@ -11,6 +11,8 @@ import uz.gita.bookapp.data.model.common.BookAddRequestData
 import uz.gita.bookapp.data.model.common.BookResponseData
 import uz.gita.bookapp.presentation.viewmodel.FavViewModel
 import uz.gita.bookapp.domain.usecase.FavUseCase
+import uz.gita.bookapp.utils.loadCompleteLiveData
+import uz.gita.bookapp.utils.loadStartedLiveData
 import javax.inject.Inject
 
 @HiltViewModel
@@ -23,20 +25,24 @@ class FavViewModelImpl @Inject constructor(private val bookUseCase: FavUseCase):
     override val addBookLoadCounterLiveData = MutableLiveData<Boolean>()
 
     init {
-        getFavouriteBooksList()
+        getFavouriteBooksListDB()
     }
 
-    override fun getFavouriteBooksList() {
-            bookUseCase.getFavouriteBooksList().onEach {
+    override fun getFavouriteBooksListDB() {
+            bookUseCase.getFavouriteBooksListDB().onEach {
                 bookListLiveResponseData.value = it
             }.launchIn(viewModelScope)
         }
 
 
     override fun loadBook(book: BookResponseData) {
+        loadStartedLiveData.value = book.toBookAddRequestData()
         bookUseCase.loadBook(book).onEach {
             Log.d("TAG", "viewModel loadBook: ")
-            loadSuccessLiveData.value = it
+            if (it) {
+                loadSuccessLiveData.value = it
+                loadCompleteLiveData.value = book.toBookAddRequestData()
+            }
         }.launchIn(viewModelScope)
     }
 
@@ -48,14 +54,14 @@ class FavViewModelImpl @Inject constructor(private val bookUseCase: FavUseCase):
     override fun isBookFavourite(book: BookAddRequestData) {
         bookUseCase.isBookFavourite(book.toBookAddRequest()).onEach {
             isBookFavouriteLiveData.value = it
-            getFavouriteBooksList()
+            getFavouriteBooksListDB()
         }.launchIn(viewModelScope)
     }
 
     override fun addBookLoadCounter(book: BookAddRequestData) {
         bookUseCase.addBookLoadCounter(book.toBookAddRequest()).onEach {
             addBookLoadCounterLiveData.value = it
-            getFavouriteBooksList()
+            getFavouriteBooksListDB()
         }.launchIn(viewModelScope)
     }
 }

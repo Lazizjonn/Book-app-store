@@ -19,6 +19,7 @@ data class BookAddRequestData(
     val path: String = ""
 ): Serializable {
 
+
     fun toBookAddRequest(): BookAddRequest {
         val _fav: Int = when (this.fav){
             true ->{ 1 }

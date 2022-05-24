@@ -11,13 +11,19 @@ interface BookRepository {
 
     fun getBooksList(): Flow<List<BookResponse>>
 
-    fun getFavouriteBooksList(): Flow<List<BookResponseData>>
+    fun getBooksListDB(): Flow<List<BookResponse>>
+
+//    fun getFavouriteBooksList(): Flow<List<BookResponse>>
+
+    fun getFavouriteBooksListDB(): Flow<List<BookResponse>>
 
     fun uploadBook(book: BookAddRequest): Flow<Boolean>
 
     fun loadBook(book: BookResponse): Flow<Boolean>
 
-    fun isBookFavourite(book: BookAddRequest): Flow<Boolean>
+//    fun isBookFavourite(book: BookAddRequest): Flow<Boolean>
+
+    fun isBookFavouriteDB(book: BookAddRequest): Flow<Boolean>
 
     fun addBookLoadCounter(book: BookAddRequest): Flow<Boolean>
 
