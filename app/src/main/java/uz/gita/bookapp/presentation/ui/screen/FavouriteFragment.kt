@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import android.view.View
 import android.widget.Toast
 import androidx.core.os.bundleOf
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -60,7 +61,14 @@ class FavouriteFragment : Fragment(R.layout.fragment_favourite) {
 
     private val bookListObserver = Observer<List<BookResponseData>> {
         Log.d("TAG", "addBookLoadCounter: loaded 5")
-        mFavAdapter.submitList(it)
+        if (it.size > 0) {
+            binding.favRecycle.isVisible = true
+            binding.animationView.isVisible = false
+            mFavAdapter.submitList(it)
+        } else {
+            binding.favRecycle.isVisible = false
+            binding.animationView.isVisible = true
+        }
     }
     private val uploadSuccessObserver = Observer<Boolean> {
         Toast.makeText(requireContext(), "Uploaded: " + it, Toast.LENGTH_SHORT).show()
@@ -113,6 +121,7 @@ class FavouriteFragment : Fragment(R.layout.fragment_favourite) {
         mFavAdapter = FavListAdapter()
         binding.favRecycle.adapter = mFavAdapter
         binding.favRecycle.layoutManager = LinearLayoutManager(requireContext())
+        binding.favRecycle.isVisible = false
     }
 
     private fun clicks() {

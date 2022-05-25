@@ -14,10 +14,9 @@ import uz.gita.bookapp.data.model.common.BookResponseData
 import uz.gita.bookapp.data.model.request.BookAddRequest
 import uz.gita.bookapp.domain.usecase.BookUseCase
 import uz.gita.bookapp.presentation.viewmodel.MainViewModel
-import javax.inject.Inject
-import uz.gita.bookapp.domain.usecase.BookUseCase
 import uz.gita.bookapp.utils.loadCompleteLiveData
 import uz.gita.bookapp.utils.loadStartedLiveData
+import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModelImpl @Inject constructor(private val bookUseCase: BookUseCase) : ViewModel(), MainViewModel {

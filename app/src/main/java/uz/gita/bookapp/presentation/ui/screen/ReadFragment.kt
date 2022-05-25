@@ -34,7 +34,7 @@ class ReadFragment : Fragment(R.layout.fragment_read) {
             viewModel.goBack()
         }
 
-        viewModel.goBackLiveData.observe(this@ReadFragment, goBackObserver)
+        viewModel.goBackLiveData.observe(this, goBackObserver)
     }
 
     private val goBackObserver = Observer<Unit>{

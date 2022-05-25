@@ -73,12 +73,12 @@ class BookRepositoryImpl @Inject constructor(
     override fun getFavouriteBooksListDB(): Flow<List<BookResponse>> = flow{ emit(dao.getAllFavBooks().map { it.toBookResponse() }) }.flowOn(Dispatchers.IO)
 
     private fun addMore1() {
-        val temp1 = BookResponse(1,
-            "https://hilolnashr.uz/image/cache/catalog/001-Kitoblar/001_hilol_nashr/001_diniy/baxtiyor-oila-lotin-web-500x750.png",
-            "Baxtiyor oila",
-            "Ushbu kitob Islom dinining oilaviy munosabatlarga oid ahkomlarining keng va batafsil sharhi bo‘lib, musulmon kishi oilaviy hayotga oid bilishi lozim bo‘lgan barcha masalalarni o‘z ichiga oladi. Kitobda insonga ikki dunyo saodati yo‘lini ko‘rsatib bergan Islom dinining baxtli, saodatli oila qurish, er-xotinning huquqlari, burch va majburiyatlari, ota-onaga, qaynota-qaynonaga munosabat, kelin va kuyov tanlash, aqiyqa, farzand tarbiyasi, silai rahm, taloq, idda va shu kabi ko‘plab dolzarb mavzulardagi ta’limotlari orqali bugungi kunda qator muammolar muhokama qilinadi, oyatlar, hadislar hamda salaf solihlarning hayoti misolida musulmonning baxtli oilaviy hayot dasturi ko‘rsatib beriladi.",
-            "Muslim", "Shayx Muhammad Sodiq Muhammad Yusuf", "pdf", "15mb", 504, 1, 2, "Baxtiyor_oila",
-            "gs://bookapp-51c78.appspot.com/book_storage/Baxtiyor_oila.pdf", "/storage/emulated/0/Documents/Baxtiyor_oila.pdf "
+        val temp1 = BookResponse(17,
+            "https://images-na.ssl-images-amazon.com/images/I/513BJ68DD6L._SX329_BO1,204,203,200_.jpg",
+            "Read Better, Remember More",
+            "Whether you're studying for an exam, making your way through an instructional manual on the job, keeping up with work-related magazines and newspaper articles, or just coping with everyday situations in life, reading often makes the difference between success and failure. But it isn't how fast you read that's important. It's how well you understand what you read and how much of it you remember.",
+            "Education", "Elizabeth Chesla", "pdf", "0.8mb",254, 0, 0, "Read_better_remember_more",
+            "gs://bookapp-51c78.appspot.com/book_storage/Read_better_remember_more.pdf", "/storage/emulated/0/Documents/Read_better_remember_more.pdf "
         )
 
         booksRef.document(temp1.id.toString()).set(temp1)
@@ -90,12 +90,12 @@ class BookRepositoryImpl @Inject constructor(
             }
     }
     private fun addMore2() {
-        val temp2 = BookResponse(2,
-            "https://fb2bookfree.com/uploads/posts/2021-11/thumbs/1637987715_415jhuymlrl._sx350_bo1204203200_.jpg",
-            "DESIGNING YOUR LIFE: HOW TO BUILD A WELL-LIVED, JOYFUL LIFE",
-            "At last, a book that shows you how to build—design—a life you can thrive in, at any age or stage Designers create worlds and solve problems using design thinking. Look around your office or home—at the tablet or smartphone you may be holding or the chair you are sitting in. Everything in our lives was designed by someone. And every design starts with a problem that a designer or team of designers seeks to solve.",
-            "Education"," Dave Evans", "pdf", "8mb",199,0, 2,"Designing_your_life",
-            "gs://bookapp-51c78.appspot.com/book_storage/Designing_your_life.pdf", "/storage/emulated/0/Documents/Designing_your_life.pdf ")
+        val temp2 = BookResponse(18,
+            "http://arm.sies.uz/wp-content/uploads/2021/03/%D0%91%D0%B5%D0%B7%D1%8B%D0%BC%D1%8F%D0%BD%D0%BD%D1%8B%D0%B9-20-185x300.png",
+            "Muvoffaqiyatga Erishishning 200 Siri",
+            "",
+            "Education","Robin Sharma", "pdf", "0.95mb",67,0, 0,"Robin_sharma_200_sir",
+            "gs://bookapp-51c78.appspot.com/book_storage/Robin_sharma_200_sir.pdf", "/storage/emulated/0/Documents/Robin_sharma_200_sir.pdf ")
 
         booksRef.document(temp2.id.toString()).set(temp2)
             .addOnSuccessListener {
@@ -107,12 +107,12 @@ class BookRepositoryImpl @Inject constructor(
     }
     private fun addMore3() {
 
-        val temp3 = BookResponse(3,
-            "https://fb2bookfree.com/uploads/posts/2020-10/1602553787_41gpiof19sl._sx320_bo1204203200_.jpg",
-            "THE MIRACLE MORNING: THE NOT-SO-OBVIOUS SECRET GUARANTEED TO TRANSFORM YOUR LIFE",
-            "“Hal Elrod is a genius and his book The Miracle Morning has been magical in my life. What Hal has done is taken the best practices, developed over centuries of human consciousness development, and condensed the 'best of the best' into a daily morning ritual. A ritual that is now part of my day. - Robert Kiyosaki, bestselling author of Rich Dad Poor Dad",
-            "Education"," Hal Elrod", "pdf", "1.2 mb",187,0, 2,"The_miracle_morning",
-            "gs://bookapp-51c78.appspot.com/book_storage/The_miracle_morning.pdf", "/storage/emulated/0/Documents/The_miracle_morning.pdf ")
+        val temp3 = BookResponse(19,
+            "https://kitoblardunyosi.uz/image/cache/catalog/001-Kitoblar/Boshqa-nashriyot-kitobi/tarixi-muhammadiya-3d-web-1000x1000h.jpg",
+            "TARIXI MUHAMMADIY",
+            "Бу асарда Ислом дини тарихи, Пайғамбаримиз Муҳаммад алайҳиссаломнинг ҳаёт ва фаолиятлари, 23 йиллик пайғамбарлик даврларида бошларидан кечирган оғир ва енгил кунлари, тўрт халифалари, саҳобаи киромлари ва бошқа мусулмонларнинг имон ва Ислом йўлида қилган хизматлари, мушрик ва куфр аҳлининг дастлаб Ислом динига кўрсатган қаршилик ва инкорлари, сўнгра ҳақиқатни идрок этганларидан кейин тўп-тўп бўлиб Ислом динини қабул этганлари, ажойиб ва ғаройиб тарихий воқеалар батафсил баён этилган.",
+            "Education","Alixonto’ra Sog’uniy", "pdf", "4.1mb",387,0, 2,"Tarixi_muhammadiy",
+            "gs://bookapp-51c78.appspot.com/book_storage/Tarixi_muhammadiy.pdf", "/storage/emulated/0/Documents/Tarixi_muhammadiy.pdf ")
 
         booksRef.document(temp3.id.toString()).set(temp3)
             .addOnSuccessListener {
@@ -124,12 +124,12 @@ class BookRepositoryImpl @Inject constructor(
     }
     private fun addMore4() {
 
-        val temp4 = BookResponse(4,
-            "https://fb2bookfree.com/uploads/posts/2020-10/1602553787_41gpiof19sl._sx320_bo1204203200_.jpg",
-            "About me",
-            "About me",
-            "Education","About me", "pdf", "0.5 mb",5,1, 2, "About_me",
-            "gs://bookapp-51c78.appspot.com/book_storage/About_me.pdf", "/storage/emulated/0/Documents/About_me.pdf ")
+        val temp4 = BookResponse(20,
+            "https://assets.asaxiy.uz/product/items/desktop/e0f48988114ada340782b2354c906ebc2020120916245217810L3SDzL9FOP.jpg.webp",
+            "O‘lsang, kim yig‘laydi?",
+            "Биз аслида ҳамма ҳаётнинг ўзи нима эканлигини унутган даврда яшаяпмиз. Биз инсонни бемалол Ойга йўллай оламиз, лекин шундоқ ёнимизга кўчиб келган янги қўшнилар билан танишишга сира фурсат тополмаймиз. Биз баллистик ракетани ер шарининг бошқа қисмига учириб, мўлжалга аниқ ура оламиз, бироқ негадир болалар билан кутубхонага боришни доимо орқага сурамиз. Бизда бир-биримиз билан алоқани йўқотиб қўймаслик учун электрон почта, факслар, уяли телефонлар бор, аммо инсоният ҳали ҳеч қачон бу қадар тарқоқ бўлмаган.",
+            "Education","Robin Sharma", "pdf", "20.2mb",157,0, 2, "Olsang_kim_yiglaydi",
+            "gs://bookapp-51c78.appspot.com/book_storage/Olsang_kim_yiglaydi.pdf", "/storage/emulated/0/Documents/Olsang_kim_yiglaydi.pdf ")
 
         booksRef.document(temp4.id.toString()).set(temp4)
             .addOnSuccessListener {
