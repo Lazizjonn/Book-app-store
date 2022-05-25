@@ -40,7 +40,6 @@
             android:layout_marginEnd="6dp"
             android:maxLines="3"
             android:layout_weight="1"
-
             android:layout_marginStart="6dp"
             android:text="Title \nhhbv \najzdsvdvvdsb \nhdvbd \ndvdv "
             android:fontFamily="@font/merriweather_regular"
