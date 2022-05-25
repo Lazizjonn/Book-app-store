@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.Toast
 import androidx.core.os.bundleOf
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -72,6 +73,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
 
 
     private fun setAdapter() {
+        binding.booksRecycle.isVisible = false
         booksAdapter = BookListAdapter()
         binding.booksRecycle.adapter = booksAdapter
         binding.booksRecycle.layoutManager = LinearLayoutManager(requireContext())
@@ -88,9 +90,14 @@ class MainFragment : Fragment(R.layout.fragment_main) {
     }
 
     private val bookListObserver = Observer<List<BookResponseData>> {
-        Log.d("TAG", "MainFragment getBookList: ${it.size}")
-        Log.d("TAG", "addBookLoadCounter: loaded 3")
-        booksAdapter.submitList(it)
+        if (it.size > 0){
+            binding.booksRecycle.isVisible = true
+            binding.animationView.isVisible = false
+            booksAdapter.submitList(it)
+        } else {
+            binding.booksRecycle.isVisible = false
+            binding.animationView.isVisible = true
+        }
     }
     private val uploadSuccessObserver = Observer<Boolean> {
         Toast.makeText(requireContext(), "Uploaded: " + it, Toast.LENGTH_SHORT).show()
