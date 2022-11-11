@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="uz.gita.bookapp">
+    package="uz.gita.bookapp_slp">
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
 
     <application
-        android:name=".app.App"
+        android:name="uz.gita.bookapp_slp.app.App"
         android:allowBackup="true"
         android:icon="@mipmap/book_logo"
         android:label="@string/app_name"
@@ -15,7 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BookApp">
         <activity
-            android:name=".MainActivity"
+            android:name="uz.gita.bookapp_slp.MainActivity"
             android:screenOrientation="portrait"
             android:exported="true"
             android:requestLegacyExternalStorage="true">

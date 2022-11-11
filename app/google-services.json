@@ -14,11 +14,85 @@
       },
       "oauth_client": [
         {
+          "client_id": "292275659155-5b3p1585f41kkcgigcgj3ivg026rdp0e.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "uz.gita.bookapp",
+            "certificate_hash": "c6ca568c4498f57c62519234c9d9640fb6b206b4"
+          }
+        },
+        {
           "client_id": "292275659155-7pv6d74c00he7arc2r7j27ohhhlok50q.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "uz.gita.bookapp",
             "certificate_hash": "ac7fbd051c04cd74c9135558f0c59b26a77f9242"
+          }
+        },
+        {
+          "client_id": "292275659155-167a01866os08dc4v1rpjfv0di6qrj39.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCVY3fyR9wH-s5P2kzSpwZg2jJdznZKq8I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "292275659155-167a01866os08dc4v1rpjfv0di6qrj39.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:292275659155:android:4466ea57ec1cb214034866",
+        "android_client_info": {
+          "package_name": "uz.gita.bookappSLP"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "292275659155-167a01866os08dc4v1rpjfv0di6qrj39.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCVY3fyR9wH-s5P2kzSpwZg2jJdznZKq8I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "292275659155-167a01866os08dc4v1rpjfv0di6qrj39.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:292275659155:android:ad84a0f5f1778931034866",
+        "android_client_info": {
+          "package_name": "uz.gita.bookapp_slp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "292275659155-97cmd4qfqs3p695533oo8clkcg9sjlbe.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "uz.gita.bookapp_slp",
+            "certificate_hash": "c6ca568c4498f57c62519234c9d9640fb6b206b4"
           }
         },
         {
